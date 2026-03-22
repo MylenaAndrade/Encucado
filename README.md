@@ -72,3 +72,19 @@ docker compose down -v
 
 - `GET /healthz` -> `{"status":"ok"}`
 - `GET /readyz` -> valida conexao com PostgreSQL
+- `GET /users?limit=50` -> lista usuarios
+- `POST /users` -> cria usuario
+
+Exemplo de listagem de usuarios:
+
+```bash
+curl "http://localhost:8080/users?limit=20"
+```
+
+Exemplo de criacao de usuario:
+
+```bash
+curl -X POST http://localhost:8080/users \
+	-H "Content-Type: application/json" \
+	-d '{"name":"Mylen","email":"mylen@example.com"}'
+```
