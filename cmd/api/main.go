@@ -8,6 +8,7 @@ import (
 
 	"encucado-backend/internal/config"
 	"encucado-backend/internal/database"
+	"encucado-backend/internal/users"
 )
 
 func main() {
@@ -44,6 +45,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{"status":"ok","db":"reachable"}`))
 	})
+	mux.Handle("/users", users.NewHandler(dbPool))
 
 	server := &http.Server{
 		Addr:              ":" + cfg.Port,
